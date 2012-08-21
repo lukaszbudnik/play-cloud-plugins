@@ -1,0 +1,3 @@
+20000:plugins.cloudimage.CloudinaryCloudImagePlugin
+20001:plugins.emailnotifier.MailgunEmailNotifierPlugin
+20002:plugins.smsnotifier.TwilioSmsNotifierPlugin
