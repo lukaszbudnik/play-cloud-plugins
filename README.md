@@ -1,7 +1,7 @@
-Play! Framework Cloud Plugins  [![Build Status](https://secure.travis-ci.org/lukasz-budnik/play-cloud-plugins.png?branch=master)](http://travis-ci.org/lukasz-budnik/play-cloud-plugins)
+Cloud Plugins for Play! Framework  [![Build Status](https://secure.travis-ci.org/lukasz-budnik/play-cloud-plugins.png?branch=master)](http://travis-ci.org/lukasz-budnik/play-cloud-plugins)
 ==================
 
-Play! Cloud Plugins project delivers 3 (for now) cloud plugins:
+Cloud Plugins project delivers 3 (for now) cloud plugins:
 
 * Cloudinary - cloud-based image management and manipulation
 * Mailgun - cloud-based mail services over HTTPS
@@ -18,7 +18,7 @@ Configuration is pretty straight forward. All you have to do is set proper envir
     export TWILIO_APPLICATION_SID=SID
     export TWILIO_AUTH_TOKEN=TOKEN
 
-If you use Heroku, Cloudinary and Mailgun properties are provided out of the box after you install proper add-ons. Twilio is not (yet) supported by Heroku so you have to create these environment variables yourself.
+If you use Heroku, Cloudinary and Mailgun environment variables are provided out of the box after you install proper add-ons. Twilio is not (yet) supported by Heroku so you have to create these environment variables yourself.
 
 ### play.plugins
 
@@ -32,7 +32,7 @@ That's all.
 
 ## Usage
 
-Each Plugin has a service property which you should use. Please see the Specs for full source code.
+Each Plugin has a service property which you should use. Please see specs for full source code examples.
 
 ### Cloudinary
 
@@ -50,7 +50,7 @@ Each Plugin has a service property which you should use. Please see the Specs fo
 ### Twilio
 
     val smsNotifierService = use[SmsNotifierPlugin].smsNotifierService
-    val id = smsNotifierService.send(from, to, text)
+    val response = smsNotifierService.send(from, to, text)
 
 ## Behavioural Tests
 
