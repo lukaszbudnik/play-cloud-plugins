@@ -20,10 +20,15 @@ class CloudinaryCloudImageSpec extends Specification {
 
   "CloudinaryCloudImagePlugin" should {
     "upload and destroy an image" in {
-      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
+      val fakeApplication = FakeApplication(additionalConfiguration = inMemoryDatabase())
+      running(fakeApplication) {
         val cloudImageService = use[CloudImagePlugin].cloudImageService
+        
+        // if test is run from a sub project take a look at modules directory
+        val file = fakeApplication.getExistingFile("/public/" + fileName).getOrElse(fakeApplication.getFile("/modules/play-cloud-plugins/public/" + fileName))
 
-        val bis = new BufferedInputStream(new FileInputStream("public/" + fileName))
+        val bis = new BufferedInputStream(new FileInputStream(file))
+        
         val contents = Stream.continually(bis.read).takeWhile(-1 !=).map(_.toByte).toArray
 
         val uploadResponse = cloudImageService.upload(fileName, contents)
