@@ -1,4 +1,4 @@
-Cloud Plugins for Play! Framework  [![Build Status](https://secure.travis-ci.org/lukasz-budnik/play-cloud-plugins.png?branch=master)](http://travis-ci.org/lukasz-budnik/play-cloud-plugins)
+Cloud Plugins for Play! Framework [![Build Status](https://travis-ci.org/lukaszbudnik/play-cloud-plugins.png?branch=master)](https://travis-ci.org/lukaszbudnik/play-cloud-plugins)
 ==================
 
 Cloud Plugins project delivers 3 (for now) cloud plugins:
