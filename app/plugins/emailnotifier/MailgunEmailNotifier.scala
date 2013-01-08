@@ -28,6 +28,7 @@ import org.apache.http.protocol.SyncBasicHttpContext
 import org.apache.http.impl.auth.BasicScheme
 import org.apache.http.protocol.BasicHttpContext
 import plugins.utils.HttpUtils
+import java.nio.charset.Charset
 
 class MailgunEmailNotifierPlugin(app: Application) extends EmailNotifierPlugin {
 
@@ -71,12 +72,17 @@ class MailgunEmailNotifierService(apiKey: String, login: String, domain: String)
     val post = new HttpPost(sendUrl)
     val multiPartEntity: MultipartEntity = new MultipartEntity(HttpMultipartMode.STRICT)
 
-    multiPartEntity.addPart("from", new StringBody(from))
-    multiPartEntity.addPart("subject", new StringBody(subject))
-    multiPartEntity.addPart("to", new StringBody(to))
-    multiPartEntity.addPart("text", new StringBody(textMessage))
+    val charset = Option(Charset.availableCharsets().get("UTF-8")) match {
+      case Some(charset) => charset
+      case None => Charset.defaultCharset()
+    }  
+    
+    multiPartEntity.addPart("from", new StringBody(from, charset))
+    multiPartEntity.addPart("subject", new StringBody(subject, charset))
+    multiPartEntity.addPart("to", new StringBody(to, charset))
+    multiPartEntity.addPart("text", new StringBody(textMessage, charset))
     htmlMessage.map { htmlMessage =>
-      multiPartEntity.addPart("html", new StringBody(htmlMessage))
+      multiPartEntity.addPart("html", new StringBody(htmlMessage, charset))
     }
 
     post.setEntity(multiPartEntity)
