@@ -1,5 +1,5 @@
 package plugins.cloudimage
-import org.apache.commons.lang.StringUtils
+import org.apache.commons.lang3.StringUtils
 
 abstract class CloudImageResponse
 
